@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>441</width>
+    <height>282</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>教育超市进存销管理信息系统</string>
+  </property>
+  <property name="whatsThis">
+   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </property>
+  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>441</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="defaultUp">
+    <bool>false</bool>
+   </property>
+   <widget class="QMenu" name="system">
+    <property name="title">
+     <string>系统管理</string>
+    </property>
+    <addaction name="relogin"/>
+    <addaction name="changePwd"/>
+    <addaction name="separator"/>
+    <addaction name="exit"/>
+   </widget>
+   <widget class="QMenu" name="purchase">
+    <property name="title">
+     <string>采购管理</string>
+    </property>
+    <addaction name="order"/>
+    <addaction name="query_purchase"/>
+   </widget>
+   <widget class="QMenu" name="warehouse">
+    <property name="title">
+     <string>入库管理</string>
+    </property>
+    <addaction name="warehouse_in"/>
+    <addaction name="query_warehouse"/>
+   </widget>
+   <widget class="QMenu" name="sales">
+    <property name="title">
+     <string>销售管理</string>
+    </property>
+    <addaction name="sales_out"/>
+    <addaction name="query_sales"/>
+   </widget>
+   <addaction name="system"/>
+   <addaction name="purchase"/>
+   <addaction name="warehouse"/>
+   <addaction name="sales"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="relogin">
+   <property name="text">
+    <string>重新登录</string>
+   </property>
+  </action>
+  <action name="changePwd">
+   <property name="text">
+    <string>修改密码</string>
+   </property>
+  </action>
+  <action name="action_2">
+   <property name="text">
+    <string>退出系统</string>
+   </property>
+  </action>
+  <action name="exit">
+   <property name="text">
+    <string>退出系统</string>
+   </property>
+  </action>
+  <action name="order">
+   <property name="text">
+    <string>订单下达</string>
+   </property>
+  </action>
+  <action name="query_purchase">
+   <property name="text">
+    <string>明细查询</string>
+   </property>
+  </action>
+  <action name="warehouse_in">
+   <property name="text">
+    <string>核算入库</string>
+   </property>
+  </action>
+  <action name="sales_out">
+   <property name="text">
+    <string>销售出库</string>
+   </property>
+  </action>
+  <action name="query_warehouse">
+   <property name="text">
+    <string>明细查询</string>
+   </property>
+  </action>
+  <action name="query_sales">
+   <property name="text">
+    <string>明细查询</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
