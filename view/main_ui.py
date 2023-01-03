@@ -38,7 +38,7 @@ class MainUI:
         self.ui.changePwd.triggered.connect(self.changePwd)
 
         self.ui.order.triggered.connect(self.order)
-        # self.ui.query_purchase.triggered.connect(self.query_purchase)
+        self.ui.query_purchase.triggered.connect(self.query_purchase)
 
     def relogin(self):
         global newWindow

@@ -1,21 +1,16 @@
 """ISMS model module"""
 
-import pymssql
+import pyodbc
 
 
 def get_db():
     """Get database connection"""
     try:
-        conn = pymssql.connect(
-            server='DESKTOP-JM2MPRQ',
-            user='sa',
-            password='123456',
-            database='ISMS',
-            charset='cp936'
-        )
+        conn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};'
+                              'SERVER=DESKTOP-JM2MPRQ;DATABASE=ISMS;UID=sa;PWD=123456')
         cur = conn.cursor()
         return conn, cur
-    except pymssql.Error as err:
+    except pyodbc.Error as err:
         print(err)
         return None, None
 
@@ -131,28 +126,16 @@ def insert_purchaseOrder(pID, cName, sName, pUnitPrice, pQuantity, pMeasuringUin
         return False
 
 
-def query_purchaseOrder(**args):
+def query_purchaseOrder(params: dict):
     """Query purchaseOrder"""
     conn, cur = get_db()
     if conn is None:
         return None
     where_clause = ' WHERE'
-    for k, v in args.items():
+    for k, v in params.items():
         where_clause += ' {} = {} AND'.format(k, v)
     where_clause = where_clause[:-4]
     sql = "SELECT * FROM purchaseOrder" + where_clause
-    cur.execute(sql)
-    result = cur.fetchall()
-    conn.close()
-    return result
-
-
-def query_currentDatetime():
-    """Query currentDatetime"""
-    conn, cur = get_db()
-    if conn is None:
-        return None
-    sql = "SELECT GETDATE()"
     cur.execute(sql)
     result = cur.fetchall()
     conn.close()
