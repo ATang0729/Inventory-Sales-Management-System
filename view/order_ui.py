@@ -10,7 +10,7 @@ newWindow = None
 
 class OrderUI:
     def __init__(self, purchaserID):
-        self.ui = QUiLoader().load('view/order.ui')
+        self.ui = QUiLoader().load('view/ui/order.ui')
         self.purchaserID = purchaserID
         self.ui.orderButton.clicked.connect(self.order)
         self.ui.queryButton.clicked.connect(self.query)

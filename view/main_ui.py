@@ -13,7 +13,7 @@ newWindow = None
 
 class MainUI:
     def __init__(self, userid, uName, uType):
-        self.ui = QUiLoader().load('view/main.ui')
+        self.ui = QUiLoader().load('view/ui/main.ui')
         self.userid = userid
         self.uName = uName
         self.uType = uType

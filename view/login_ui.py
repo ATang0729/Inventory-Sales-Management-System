@@ -11,7 +11,7 @@ main = None
 
 class LoginUI:
     def __init__(self):
-        load = QUiLoader().load('view/login.ui')
+        load = QUiLoader().load('view/ui/login.ui')
         self.ui = load
         self.ui.buttonBox.accepted.connect(self.login)
         self.ui.buttonBox.rejected.connect(self.exit)

@@ -7,7 +7,7 @@ from PySide6.QtUiTools import QUiLoader
 
 class ChangePwdUI:
     def __init__(self, userid):
-        load = QUiLoader().load('view/changePwd.ui')
+        load = QUiLoader().load('view/ui/changePwd.ui')
         self.ui = load
         self.ui.buttonBox.accepted.connect(self.changePwd)
         self.ui.buttonBox.rejected.connect(self.exit)

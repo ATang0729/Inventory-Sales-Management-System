@@ -11,7 +11,7 @@ newWindow = None
 
 class QueryPurchaseUI:
     def __init__(self, purchaserID):
-        self.ui = QUiLoader().load('view/order_query.ui')
+        self.ui = QUiLoader().load('view/ui/order_query.ui')
         self.purchaserID = purchaserID
         self.ui.pIDEdit.setText(str(self.purchaserID))
 
