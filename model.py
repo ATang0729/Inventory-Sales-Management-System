@@ -38,8 +38,8 @@ def write_log(uID):
     sql = '''
         INSERT INTO loginLog(uID)
         VALUES (%s)
-    '''
-    cur.execute(sql, uID)
+    ''' % uID
+    cur.execute(sql)
     conn.commit()
     conn.close()
 
@@ -51,8 +51,8 @@ def get_salesmanID(uID):
         return None
     sql = '''
         SELECT sID FROM salesmanTable where uID = %s
-    '''
-    cur.execute(sql, uID)
+    ''' % uID
+    cur.execute(sql)
     result = cur.fetchall()
     conn.close()
     return result
@@ -65,8 +65,8 @@ def get_purchaserID(uID):
         return None
     sql = '''
         SELECT pID FROM purchaserTable where uID = %s
-    '''
-    cur.execute(sql, uID)
+    ''' % uID
+    cur.execute(sql)
     result = cur.fetchall()
     conn.close()
     return result
@@ -79,8 +79,8 @@ def get_keeperID(uID):
         return None
     sql = '''
         SELECT kID FROM keeperTable where uID = %s
-    '''
-    cur.execute(sql, uID)
+    ''' % uID
+    cur.execute(sql)
     result = cur.fetchall()
     conn.close()
     return result
@@ -101,7 +101,7 @@ def change_pwd(uID, new_pwd):
         conn.commit()
         conn.close()
         return True
-    except pymssql.Error as err:
+    except pyodbc.Error as err:
         print(err)
         return False
 
@@ -121,7 +121,7 @@ def insert_purchaseOrder(pID, cName, sName, pUnitPrice, pQuantity, pMeasuringUin
         conn.commit()
         conn.close()
         return True
-    except pymssql.Error as err:
+    except pyodbc.Error as err:
         print(err)
         return False
 
@@ -133,8 +133,9 @@ def query_purchaseOrder(params: dict):
         return None
     where_clause = ' WHERE'
     for k, v in params.items():
-        where_clause += ' {} = {} AND'.format(k, v)
-    where_clause = where_clause[:-4]
+        if k in ['pID', 'cName', 'sName', 'poID']:
+            where_clause += ' {} = {} AND'.format(k, v)
+    where_clause += ' poDatetime BETWEEN \'{}\' AND \'{}\''.format(params['startDateTime'], params['endDateTime'])
     sql = "SELECT * FROM purchaseOrder" + where_clause
     cur.execute(sql)
     result = cur.fetchall()
