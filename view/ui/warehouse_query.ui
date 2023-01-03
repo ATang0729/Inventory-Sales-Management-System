@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>902</width>
+    <height>295</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QLineEdit" name="cNameEdit">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>10</y>
+     <width>120</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="exitButton">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>250</y>
+     <width>75</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>关闭</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>10</y>
+     <width>80</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>入库单编号</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
+  </widget>
+  <widget class="QDateTimeEdit" name="dateTimeEdit_2">
+   <property name="geometry">
+    <rect>
+     <x>740</x>
+     <y>140</y>
+     <width>150</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>40</y>
+     <width>711</width>
+     <height>192</height>
+    </rect>
+   </property>
+   <property name="lineWidth">
+    <number>1</number>
+   </property>
+   <property name="alternatingRowColors">
+    <bool>false</bool>
+   </property>
+   <property name="rowCount">
+    <number>0</number>
+   </property>
+   <property name="columnCount">
+    <number>7</number>
+   </property>
+   <attribute name="horizontalHeaderCascadingSectionResizes">
+    <bool>false</bool>
+   </attribute>
+   <column>
+    <property name="text">
+     <string>入库单ID</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>仓管员ID</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>采购单ID</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>商品名称</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>实际入库数量</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>计量单位名称</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>确认入库时间</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QLineEdit" name="kIDEdit">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>10</y>
+     <width>120</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>740</x>
+     <y>120</y>
+     <width>54</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>到</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>10</y>
+     <width>80</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>仓管员编号</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="wrIDEdit">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>10</y>
+     <width>120</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QDateTimeEdit" name="dateTimeEdit">
+   <property name="geometry">
+    <rect>
+     <x>740</x>
+     <y>90</y>
+     <width>150</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>740</x>
+     <y>40</y>
+     <width>100</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>确认入库时间范围</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="queryButton">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>250</y>
+     <width>75</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>明细查询</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>740</x>
+     <y>70</y>
+     <width>54</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>从</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="checkButton">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>250</y>
+     <width>75</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>入库核算</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>480</x>
+     <y>10</y>
+     <width>80</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>商品名称</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

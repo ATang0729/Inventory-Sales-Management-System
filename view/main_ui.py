@@ -5,8 +5,8 @@ from PySide6.QtUiTools import QUiLoader
 from view import login_ui
 from controller import main_controller
 from view import changePwd_ui
-from view import order_ui
-from view import order_query_ui
+from view import order_ui, order_query_ui
+from view import warehouse_in_ui
 
 newWindow = None
 
@@ -40,6 +40,8 @@ class MainUI:
         self.ui.order.triggered.connect(self.order)
         self.ui.query_purchase.triggered.connect(self.query_purchase)
 
+        self.ui.warehouse_in.triggered.connect(self.warehouse)
+
     def relogin(self):
         global newWindow
         newWindow = login_ui.LoginUI()
@@ -62,6 +64,11 @@ class MainUI:
     def query_purchase(self):
         global newWindow
         newWindow = order_query_ui.QueryPurchaseUI(self.roleid)
+        newWindow.ui.show()
+
+    def warehouse(self):
+        global newWindow
+        newWindow = warehouse_in_ui.WarehouseUI(self.roleid)
         newWindow.ui.show()
 
 
