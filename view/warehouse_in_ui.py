@@ -11,7 +11,7 @@ newWindow = None
 
 class WarehouseUI:
     def __init__(self, keeperid):
-        self.ui = QUiLoader().load('view/ui/warehouse.ui')
+        self.ui = QUiLoader().load('ui/warehouse.ui')
         self.keeperid = keeperid
 
         current_date = QDate.currentDate().addDays(1)
@@ -19,7 +19,7 @@ class WarehouseUI:
 
         self.ui.queryButton.clicked.connect(self.query)
 
-        self.ui.checkButton.ckicked.connect(self.check)
+        self.ui.checkButton.clicked.connect(self.check)
         self.ui.queryButton_2.clicked.connect(self.query_2)
         self.ui.exitButton.clicked.connect(self.exit)
 
@@ -30,7 +30,9 @@ class WarehouseUI:
         pID = self.ui.pIDEdit.text().strip()
         cName = self.ui.cNameEdit.text().strip()
         sName = self.ui.sNameEdit.text().strip()
-        params = {'isInWarehouse': 0}
+        startDateTime = self.ui.dateTimeEdit.dateTime().toString("yyyy-MM-dd hh:mm:ss")
+        endDateTime = self.ui.dateTimeEdit_2.dateTime().toString("yyyy-MM-dd hh:mm:ss")
+        params = {'isInWarehouse': 0, 'startDateTime': startDateTime, 'endDateTime': endDateTime}
         if poID != "":
             params['poID'] = poID
         if pID != "":
@@ -68,5 +70,13 @@ class WarehouseUI:
 
     def exit(self):
         self.ui.close()
+
+
+if __name__ == '__main__':
+    from PySide6.QtWidgets import QApplication
+    app = QApplication([])
+    window = WarehouseUI(1)
+    window.ui.show()
+    app.exec()
 
 

@@ -133,10 +133,14 @@ def query_purchaseOrder(params: dict):
         return None
     where_clause = ' WHERE'
     for k, v in params.items():
-        if k in ['pID', 'cName', 'sName', 'poID']:
+        if k in ['pID', 'cName', 'sName', 'poID', 'isInWarehouse']:
             where_clause += ' {} = {} AND'.format(k, v)
-    where_clause += ' poDatetime BETWEEN \'{}\' AND \'{}\''.format(params['startDateTime'], params['endDateTime'])
+    if params.get('startDateTime'):
+        where_clause += ' poDatetime BETWEEN \'{}\' AND \'{}\''.format(params['startDateTime'], params['endDateTime'])
+    else:
+        where_clause = where_clause[:-3]
     sql = "SELECT * FROM purchaseOrder" + where_clause
+    print(sql)
     cur.execute(sql)
     result = cur.fetchall()
     conn.close()
