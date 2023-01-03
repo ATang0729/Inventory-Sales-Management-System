@@ -135,7 +135,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>采购单编号</string>
+    <string>采购单编号*</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -219,7 +219,7 @@
     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
   </widget>
-  <widget class="QPushButton" name="queryButton_2">
+  <widget class="QPushButton" name="queryButton">
    <property name="geometry">
     <rect>
      <x>630</x>
@@ -254,7 +254,7 @@
     <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="checkNumEdit">
    <property name="geometry">
     <rect>
      <x>400</x>
@@ -277,7 +277,7 @@
     <string>关闭</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="queryButton">
+  <widget class="QPushButton" name="queryButton2">
    <property name="geometry">
     <rect>
      <x>380</x>

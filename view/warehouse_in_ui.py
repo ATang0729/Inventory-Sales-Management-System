@@ -4,14 +4,14 @@ from controller import warehouse_controller
 from PySide6.QtWidgets import QMessageBox, QTableWidgetItem
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtCore import QDate
-
+from view import warehouse_query_ui
 
 newWindow = None
 
 
 class WarehouseUI:
     def __init__(self, keeperid):
-        self.ui = QUiLoader().load('ui/warehouse.ui')
+        self.ui = QUiLoader().load('view/ui/warehouse.ui')
         self.keeperid = keeperid
 
         current_date = QDate.currentDate().addDays(1)
@@ -20,8 +20,10 @@ class WarehouseUI:
         self.ui.queryButton.clicked.connect(self.query)
 
         self.ui.checkButton.clicked.connect(self.check)
-        self.ui.queryButton_2.clicked.connect(self.query_2)
+        self.ui.queryButton2.clicked.connect(self.query_2)
         self.ui.exitButton.clicked.connect(self.exit)
+
+        self.ui.tableWidget.itemDoubleClicked.connect(self.poIDClicked)
 
         self.query()
 
@@ -62,11 +64,42 @@ class WarehouseUI:
                 self.ui.tableWidget.setItem(i, 5, datetime)
             return True
 
+    def poIDClicked(self):
+        row = self.ui.tableWidget.currentRow()
+        poID = self.ui.tableWidget.item(row, 0).text()
+        self.ui.poIDEdit.setText(poID)
+
     def check(self):
-        pass
+        checkNum = self.ui.checkNumEdit.text().strip()
+        poID = self.ui.poIDEdit.text().strip()
+        if checkNum == "":
+            QMessageBox.information(self.ui, "提示", "请输入入库数量！")
+            return False
+        elif poID == "":
+            QMessageBox.information(self.ui, "提示", "请输入对应的采购单编号！")
+            return False
+        else:
+            choice = QMessageBox.question(self.ui, "提示",
+                                          "您正在核算的采购单编号为：" + poID + "，入库数量为：" + checkNum + "，请确认！",
+                                          QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+            if choice == QMessageBox.Yes:
+                flag = warehouse_controller.check_purchaseOrder(poID, checkNum, self.keeperid)
+                if flag is None:
+                    QMessageBox.information(self.ui, "提示", "LinkError：数据库连接失败！")
+                    return False
+                elif flag == False:
+                    QMessageBox.information(self.ui, "提示", "QueryError：核算入库失败！请联系开发人员")
+                    return False
+                else:
+                    QMessageBox.information(self.ui, "提示", "入库核算成功！")
+                    self.query()
+                    return True
 
     def query_2(self):
-        pass
+        global newWindow
+        newWindow = warehouse_query_ui.QueryWarehouseUI(self.keeperid)
+        newWindow.ui.show()
+        self.ui.close()
 
     def exit(self):
         self.ui.close()
@@ -74,9 +107,8 @@ class WarehouseUI:
 
 if __name__ == '__main__':
     from PySide6.QtWidgets import QApplication
+
     app = QApplication([])
     window = WarehouseUI(1)
     window.ui.show()
     app.exec()
-
-

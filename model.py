@@ -133,8 +133,10 @@ def query_purchaseOrder(params: dict):
         return None
     where_clause = ' WHERE'
     for k, v in params.items():
-        if k in ['pID', 'cName', 'sName', 'poID', 'isInWarehouse']:
+        if k in ['pID', 'poID', 'isInWarehouse']:
             where_clause += ' {} = {} AND'.format(k, v)
+        elif k in ['cName', 'sName']:
+            where_clause += ' {} LIKE \'%{}%\' AND'.format(k, v)
     if params.get('startDateTime'):
         where_clause += ' poDatetime BETWEEN \'{}\' AND \'{}\''.format(params['startDateTime'], params['endDateTime'])
     else:
@@ -145,3 +147,23 @@ def query_purchaseOrder(params: dict):
     result = cur.fetchall()
     conn.close()
     return result
+
+
+def check_purchaseOrder(poID, checkNum, kid):
+    """Check purchaseOrder"""
+    conn, cur = get_db()
+    if conn is None:
+        return None
+    try:
+        sql = """
+            Insert into [warehouse-inRecords](poID, pQuantityReal, kID)
+            VALUES (%s, %s, %s)
+        """ % (poID, checkNum, kid)
+        print(sql)
+        cur.execute(sql)
+        conn.commit()
+        conn.close()
+        return True
+    except pyodbc.Error as err:
+        print(err)
+        return False

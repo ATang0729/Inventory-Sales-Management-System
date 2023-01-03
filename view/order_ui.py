@@ -33,7 +33,7 @@ class OrderUI:
             if flag:
                 QMessageBox.information(self.ui, "提示", "下达成功！")
             elif flag == False:
-                QMessageBox.information(self.ui, "提示", "下达失败！")
+                QMessageBox.information(self.ui, "提示", "QueryError：下达失败！")
             elif flag is None:
                 QMessageBox.information(self.ui, "提示", "LinkError：数据库连接失败！")
 
