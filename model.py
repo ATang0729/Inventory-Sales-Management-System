@@ -3,6 +3,7 @@
 import pyodbc
 
 
+# 建立数据库连接#########################################
 def get_db():
     """Get database connection"""
     try:
@@ -15,6 +16,7 @@ def get_db():
         return None, None
 
 
+# 系统管理###############################################
 def query_userTable(uID):
     """use uID to query userTable"""
     conn, cur = get_db()
@@ -106,6 +108,7 @@ def change_pwd(uID, new_pwd):
         return False
 
 
+# 采购管理###############################################
 def insert_purchaseOrder(pID, cName, sName, pUnitPrice, pQuantity, pMeasuringUint):
     """Insert purchaseOrder"""
     conn, cur = get_db()
@@ -149,6 +152,7 @@ def query_purchaseOrder(params: dict):
     return result
 
 
+# 入库管理###############################################
 def check_purchaseOrder(poID, checkNum, kid):
     """Check purchaseOrder"""
     conn, cur = get_db()
@@ -167,3 +171,28 @@ def check_purchaseOrder(poID, checkNum, kid):
     except pyodbc.Error as err:
         print(err)
         return False
+
+
+def query_warehouseDetail(params: dict):
+    """Query warehouseDetail"""
+    conn, cur = get_db()
+    if conn is None:
+        return None
+    where_clause = ' WHERE'
+    for k, v in params.items():
+        if k in ['kID', 'wrID']:
+            where_clause += ' {} = {} AND'.format(k, v)
+        elif k in ['cName']:
+            where_clause += ' {} LIKE \'%{}%\' AND'.format(k, v)
+    if params.get('startDateTime'):
+        where_clause += ' wrDatetime BETWEEN \'{}\' AND \'{}\''.format(params['startDateTime'], params['endDateTime'])
+    else:
+        where_clause = where_clause[:-3]
+    sql = "SELECT wrID,kID,po.poID,cName,pQuantityReal,pMeasuringUnit,wrDatetime FROM [warehouse-inRecords] wr " \
+          + "join purchaseOrder po on wr.poID = po.poID" \
+          + where_clause
+    print(sql)
+    cur.execute(sql)
+    result = cur.fetchall()
+    conn.close()
+    return result
