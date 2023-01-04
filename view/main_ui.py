@@ -6,7 +6,8 @@ from view import login_ui
 from controller import main_controller
 from view import changePwd_ui
 from view import order_ui, order_query_ui
-from view import warehouse_in_ui
+from view import warehouse_in_ui, warehouse_query_ui
+from view import sale_ui, sale_query_ui
 
 newWindow = None
 
@@ -41,6 +42,10 @@ class MainUI:
         self.ui.query_purchase.triggered.connect(self.query_purchase)
 
         self.ui.warehouse_in.triggered.connect(self.warehouse)
+        self.ui.query_warehouse.triggered.connect(self.query_warehouse)
+
+        self.ui.sales_out.triggered.connect(self.sale)
+        self.ui.query_sales.triggered.connect(self.query_sale)
 
     def relogin(self):
         global newWindow
@@ -70,6 +75,21 @@ class MainUI:
         global newWindow
         newWindow = warehouse_in_ui.WarehouseUI(self.roleid)
         newWindow.ui.show()
+
+    def query_warehouse(self):
+        global newWindow
+        newWindow = warehouse_query_ui.QueryWarehouseUI(self.roleid)
+        newWindow.ui.show()
+
+    def sale(self):
+        global newWindow
+        newWindow = sale_ui.SaleUI(self.roleid)
+        newWindow.ui.show()
+
+    def query_sale(self):
+        global newWindow
+        newWindow = sale_query_ui.SaleQueryUI(self.roleid)
+        # newWindow.ui.show()
 
 
 if __name__ == "__main__":

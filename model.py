@@ -196,3 +196,41 @@ def query_warehouseDetail(params: dict):
     result = cur.fetchall()
     conn.close()
     return result
+
+
+# 销售管理###############################################
+def query_inventory(cName: str):
+    """Query inventory"""
+    conn, cur = get_db()
+    if conn is None:
+        return None
+    try:
+        sql = "SELECT cID,pO.cName,cQuantity,pMeasuringUnit,pUnitPrice FROM inventoryTable " \
+              "join purchaseOrder pO on inventoryTable.cName = pO.cName " \
+              "WHERE pO.cName LIKE \'%{}%\' AND cQuantity > 0".format(cName)
+        print(sql)
+        cur.execute(sql)
+        result = cur.fetchall()
+        conn.close()
+        return result
+    except pyodbc.Error as err:
+        print(err)
+        return False
+
+
+def sale(cID: int, cQuantity: float, cPrice: float, sID: int):
+    """Sale"""
+    conn, cur = get_db()
+    if conn is None:
+        return None
+    try:
+        sql = """INSERT INTO salesRecords(sID, cID, srQuantity, srUnitPrice) 
+                 values (%d, %d, %f, %f)""" % (sID, cID, cQuantity, cPrice)
+        print(sql)
+        cur.execute(sql)
+        conn.commit()
+        conn.close()
+        return True
+    except pyodbc.Error as err:
+        print(err)
+        return False
