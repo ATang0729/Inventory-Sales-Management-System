@@ -43,6 +43,9 @@ class QueryPurchaseUI:
         startDateTime = self.ui.dateTimeEdit.dateTime().toString("yyyy-MM-dd hh:mm:ss")
         # 终止日期时间
         endDateTime = self.ui.dateTimeEdit_2.dateTime().toString("yyyy-MM-dd hh:mm:ss")
+        if startDateTime > endDateTime:
+            QMessageBox.information(self.ui, "提示", "InputError6:起始日期时间不能大于终止日期时间！")
+            return False
         params = {'startDateTime': startDateTime, 'endDateTime': endDateTime}
         if poID != "":
             params['poID'] = poID

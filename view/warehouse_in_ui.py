@@ -34,6 +34,9 @@ class WarehouseUI:
         sName = self.ui.sNameEdit.text().strip()
         startDateTime = self.ui.dateTimeEdit.dateTime().toString("yyyy-MM-dd hh:mm:ss")
         endDateTime = self.ui.dateTimeEdit_2.dateTime().toString("yyyy-MM-dd hh:mm:ss")
+        if startDateTime > endDateTime:
+            QMessageBox.information(self.ui, "提示", "InputError6：开始时间不能大于结束时间！")
+            return False
         params = {'isInWarehouse': 0, 'startDateTime': startDateTime, 'endDateTime': endDateTime}
         if poID != "":
             params['poID'] = poID

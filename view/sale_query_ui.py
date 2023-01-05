@@ -28,8 +28,13 @@ class SaleQueryUI:
         srID = self.ui.srIDEdit.text().strip()
         sID = self.ui.sIDEdit.text().strip()
         cName = self.ui.cNameEdit.text().strip()
-        params = {'startDateTime': self.ui.dateTimeEdit.dateTime().toString("yyyy-MM-dd hh:mm:ss"),
-                  'endDateTime': self.ui.dateTimeEdit_2.dateTime().toString("yyyy-MM-dd hh:mm:ss")}
+        startDateTime = self.ui.dateTimeEdit.dateTime().toString("yyyy-MM-dd hh:mm:ss")
+        endDateTime = self.ui.dateTimeEdit_2.dateTime().toString("yyyy-MM-dd hh:mm:ss")
+        params = {'startDateTime': startDateTime,
+                  'endDateTime': endDateTime}
+        if startDateTime > endDateTime:
+            QMessageBox.information(self.ui, "提示", "InputError6：开始时间不能大于结束时间！")
+            return False
         if srID != "":
             params['srID'] = srID
         if sID != "":

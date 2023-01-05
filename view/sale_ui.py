@@ -83,6 +83,9 @@ class SaleUI:
                     elif flag2 is None:
                         QMessageBox.warning(self.ui, "警告", "LinkError：数据库连接失败！")
                     return False
+            else:
+                QMessageBox.warning(self.ui, "警告", "InputError2：商品不存在！请输入完整商品名称！")
+                return False
 
     def query(self):
         global newWindow

@@ -23,6 +23,8 @@ class QueryWarehouseUI:
         currentDate = QDate.currentDate().addDays(1)
         self.ui.dateTimeEdit_2.setDate(currentDate)
 
+        self.query()
+
     def check(self):
         global newWindow
         newWindow = warehouse_in_ui.WarehouseUI(self.kid)
@@ -35,6 +37,16 @@ class QueryWarehouseUI:
         cName = self.ui.cNameEdit.text().strip()
         startDateTime = self.ui.dateTimeEdit.dateTime().toString("yyyy-MM-dd hh:mm:ss")
         endDateTime = self.ui.dateTimeEdit_2.dateTime().toString("yyyy-MM-dd hh:mm:ss")
+        if startDateTime > endDateTime:
+            QMessageBox.information(self.ui, "提示", "InputError6：开始时间不能大于结束时间！")
+            return False
+        for i in (wrID, kID):
+            if i != "":
+                try:
+                    int(i)
+                except ValueError:
+                    QMessageBox.information(self.ui, "提示", "InputError1：输入的ID必须为数字！")
+                    return False
         params = {'startDateTime': startDateTime, 'endDateTime': endDateTime}
         if wrID != "":
             params['wrID'] = wrID

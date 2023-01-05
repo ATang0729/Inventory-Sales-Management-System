@@ -22,6 +22,9 @@ class LoginUI:
         if userid.strip() == "" or password.strip() == "":
             QMessageBox.warning(self.ui, "警告", "InputError2：用户名或密码不能为空")
             return False
+        if userid.isdigit() is False:
+            QMessageBox.warning(self.ui, "警告", "InputError1：用户名只能为数字")
+            return False
         flag = login_controller.login(userid, password)
         if flag[0]:
             uName = flag[1][0]
