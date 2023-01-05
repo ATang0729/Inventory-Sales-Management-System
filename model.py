@@ -234,3 +234,27 @@ def sale(cID: int, cQuantity: float, cPrice: float, sID: int):
     except pyodbc.Error as err:
         print(err)
         return False
+
+
+def query_sale(params: dict):
+    """Query sale"""
+    conn, cur = get_db()
+    if conn is None:
+        return None
+    where_clause = ' WHERE'
+    for k, v in params.items():
+        if k in ['sID', 'srID']:
+            where_clause += ' {} = {} AND'.format(k, v)
+        elif k in ['cName']:
+            where_clause += ' {} LIKE \'%{}%\' AND'.format(k, v)
+    if params.get('startDateTime'):
+        where_clause += ' salesDatetime BETWEEN \'{}\' AND \'{}\''.format(params['startDateTime'], params['endDateTime'])
+    else:
+        where_clause = where_clause[:-3]
+    sql = "SELECT srID,sID,salesDatetime,iT.cID,cName,srQuantity,srUnitPrice FROM salesRecords " \
+          + "join inventoryTable iT on iT.cID = salesRecords.cID" + where_clause
+    print(sql)
+    cur.execute(sql)
+    result = cur.fetchall()
+    conn.close()
+    return result
