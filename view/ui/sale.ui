@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>660</width>
+    <height>275</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>20</y>
+     <width>405</width>
+     <height>192</height>
+    </rect>
+   </property>
+   <attribute name="horizontalHeaderDefaultSectionSize">
+    <number>80</number>
+   </attribute>
+   <column>
+    <property name="text">
+     <string>商品编号</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>商品名称</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>在库数量</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>计量单位</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>单位定价</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>50</y>
+     <width>54</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>商品名称</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>90</y>
+     <width>54</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>销售数量</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="cNameEdit">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>50</y>
+     <width>113</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="cQuantityEdit">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>90</y>
+     <width>113</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="saleButton">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>170</y>
+     <width>75</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>确认销售</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="exitButton">
+   <property name="geometry">
+    <rect>
+     <x>345</x>
+     <y>230</y>
+     <width>80</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>关闭</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="queryButton">
+   <property name="geometry">
+    <rect>
+     <x>235</x>
+     <y>230</y>
+     <width>80</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>明细查询</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>130</y>
+     <width>54</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>销售单价</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="cPriceEdit">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>130</y>
+     <width>113</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
